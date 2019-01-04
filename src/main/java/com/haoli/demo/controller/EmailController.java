@@ -33,7 +33,7 @@ public class EmailController {
 		params.put("cid1", "qrcode");
 		params.put("cid2", "img");
 		params.put("code", inviteCode);
-		String content = velocityUtil.getText("templates/mail/imageMail.vm", params);
+		String content = velocityUtil.getText("templates/mail/demoMailTemplate.vm", params);
 		String[] toList = {"lihao_100@boe.com.cn"};
 
 		try{
