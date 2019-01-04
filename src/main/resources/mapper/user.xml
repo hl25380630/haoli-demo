@@ -3,12 +3,21 @@
 <mapper namespace="com.haoli.demo.dao.UserDao">
 
   	<sql id="CommonQuery">
+  		<!-- 精准查询 -->
         <if test="conferenceId != null ">
             and conferenceId=#{conferenceId}
         </if>
+        <!-- 模糊查询 -->
 		<if test="value != null and value != '' ">
 			and value like '%${value}%'
 		</if>
+		<!-- 按时间段查询 -->
+		<if test="startDate != null and startDate != '' ">
+            and startDate <![CDATA[>]]> #{orderDate}
+        </if>
+        <if test="endDate != null and endDate != '' ">
+            and endDate <![CDATA[<]]> #{orderDate}
+        </if>
     </sql>
 
     <insert id="batchAdd" parameterType="java.util.Map">
