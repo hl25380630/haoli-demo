@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.haoli.demo.dao.EmailDao">
+	
+	<select id="getMailConfig" parameterType="java.util.Map" resultType="com.haoli.sdk.web.domain.MailConfig">
+		select * from
+			t_mail_config
+		where
+			userId = #{userId}
+	</select>
+	
+</mapper>

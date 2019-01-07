@@ -23,9 +23,6 @@ public class UserService {
 	@Autowired
 	UserDao userDao;
 	
-	@Autowired
-	ExcelUtil excelUtil;
-
 	public void export(HttpServletRequest request, HttpServletResponse response, Map<String, Object> params) throws Exception {
 		OutputStream os = response.getOutputStream();
 		List<Map<String, Object>> dataList = new ArrayList<Map<String, Object>>();
@@ -34,6 +31,7 @@ public class UserService {
 		response.setContentType("application/msexcel");
 		String fileName =URLEncoder.encode("用户信息.xlsx","UTF-8");
 		response.setHeader("Content-Disposition","attachment;filename=\"" + fileName + "\""); 
-		excelUtil.exportExcel("/templates/user.xlsx", os, varMap);		
+		ExcelUtil eu = new ExcelUtil();
+		eu.exportExcel("/templates/user.xlsx", os, varMap);		
 	}
 }

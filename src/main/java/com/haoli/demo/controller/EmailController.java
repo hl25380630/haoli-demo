@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.haoli.demo.dao.EmailDao;
 import com.haoli.demo.domain.JsonResponse;
+import com.haoli.sdk.web.domain.MailConfig;
 import com.haoli.sdk.web.util.EmailUtil;
 import com.haoli.sdk.web.util.QRCodeUtil;
 import com.haoli.sdk.web.util.VelocityUtil;
@@ -15,29 +17,32 @@ import com.haoli.sdk.web.util.VelocityUtil;
 @RestController
 public class EmailController {
 	
-	private EmailUtil emailUtil;
+
 	
 	@Autowired
 	private VelocityUtil velocityUtil;
+	
+	@Autowired
+	private EmailDao emailDao;
 
 	@GetMapping("/demo/sendEmail")
 	public JsonResponse<String> sendEmail() throws Exception{
+		Long userId = 1L;
+		Map<String, Object> qparams = new HashMap<String, Object>();
+		qparams.put("userId", userId);
+		MailConfig mailConfig = emailDao.getMailConfig(qparams);
 		Map<String, Object> params = new HashMap<String, Object>();
 		String subject = "李昊测试邮件";
-		String path="C:\\Users\\10063731\\Desktop\\BOE\\开发\\会议系统ics" ;
-		String inviteCode = "123456";
-		String codePath = path+"U"+inviteCode+".png";
-		QRCodeUtil.writeToFile(inviteCode, codePath, 50, 50);
 		String hotelEmail = "http://boe-ssc-object.oss-cn-beijing.aliyuncs.com/pdf/zhusu.pdf";
 		String img = "https://www.baidu.com/img/bd_logo1.png";
 		params.put("cid1", "qrcode");
 		params.put("cid2", "img");
-		params.put("code", inviteCode);
 		String content = velocityUtil.getText("templates/mail/demoMailTemplate.vm", params);
 		String[] toList = {"lihao_100@boe.com.cn"};
 
 		try{
-			emailUtil.sendEmail(toList, subject, content, null, new String[]{"hotel","img","qrcode"}, new String[]{hotelEmail,img,codePath});
+			EmailUtil emailUtil = new EmailUtil(mailConfig);
+			emailUtil.sendEmail(toList, subject, content, null, new String[]{"hotel","img"}, new String[]{hotelEmail,img});
 			return new JsonResponse<String>("true");
 		} catch(Exception e) {
 			return new JsonResponse<String>("false");
