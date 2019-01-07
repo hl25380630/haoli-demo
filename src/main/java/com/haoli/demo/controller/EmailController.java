@@ -48,6 +48,7 @@ public class EmailController {
 		}
 	}
 	
+	
 	@GetMapping("/demo/testConnect")
 	public JsonResponse<Boolean> testConnect() throws Exception{
 		Long userId = 2L;
