@@ -35,7 +35,6 @@ public class EmailController {
 		String subject = "李昊测试邮件";
 		String attachment = "http://boe-ssc-object.oss-cn-beijing.aliyuncs.com/pdf/zhusu.pdf";
 		String img = "https://www.baidu.com/img/bd_logo1.png";
-		params.put("cid1", "qrcode");
 		params.put("cid2", "img");
 		String content = velocityUtil.getText("templates/mail/demoMailTemplate.vm", params);
 		String[] toList = {"lihao_100@boe.com.cn"};
