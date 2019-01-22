@@ -9,8 +9,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-//@EnableDiscoveryClient
-//@EnableFeignClients
 @SpringBootApplication
 @EnableTransactionManagement
 @EnableScheduling
