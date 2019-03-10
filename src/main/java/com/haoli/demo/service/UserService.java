@@ -15,7 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.haoli.demo.dao.UserDao;
-import com.haoli.sdk.web.util.ExcelUtil;
+import com.haoli.sdk.web.util.microSoftOffice.ExcelUtil;
 
 @Service
 public class UserService {
