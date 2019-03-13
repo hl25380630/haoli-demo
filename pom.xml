@@ -14,8 +14,22 @@
 		<artifactId>haoli-sdk-web</artifactId>
 		<version>1.0</version>
 	</dependency>
+	
   </dependencies>
   
+ 	<repositories>
+	    <repository>
+	      <id>aliRepo</id>
+	      <url>http://maven.aliyun.com/nexus/content/groups/public</url>
+	    </repository>
+       	
+       	<repository>
+            <id>AsposeJavaAPI</id>
+            <name>Aspose Java API</name>
+            <url>https://repository.aspose.com/repo/</url>
+        </repository>
+	</repositories> 
+	 
   	<build>
 		<plugins>
 			<plugin>
