@@ -1,6 +1,5 @@
 package com.haoli.demo.service;
 
-import java.io.IOException;
 import java.io.OutputStream;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -15,7 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.haoli.demo.dao.UserDao;
-import com.haoli.sdk.web.util.microSoftOffice.ExcelUtil;
+import com.haoli.sdk.web.util.microSoftOffice.ExcelExportUtil;
 
 @Service
 public class UserService {
@@ -31,7 +30,7 @@ public class UserService {
 		response.setContentType("application/msexcel");
 		String fileName =URLEncoder.encode("用户信息.xlsx","UTF-8");
 		response.setHeader("Content-Disposition","attachment;filename=\"" + fileName + "\""); 
-		ExcelUtil eu = new ExcelUtil();
-		eu.exportExcel("/templates/user.xlsx", os, varMap);		
+		ExcelExportUtil exu = new ExcelExportUtil();
+		exu.exportExcel("/templates/user.xlsx", os, varMap);		
 	}
 }
